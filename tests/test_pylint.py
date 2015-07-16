@@ -19,4 +19,4 @@ class TestPyLint(TestCase):
             self.fail(e.output)
 
     def test_arprdata(self):
-        self._run_test("arprdata.py")
+        self._run_test("main.py")

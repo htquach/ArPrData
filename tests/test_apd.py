@@ -4,13 +4,13 @@
 # in this distribution for license terms.
 
 from unittest import TestCase
-import arprdata
+import main
 
 
 class TestAPD(TestCase):
     def setUp(self):
         super(TestAPD, self).setUp()
-        self.apd = arprdata.APD()
+        self.apd = main.APD()
 
     def tearDown(self):
         super(TestAPD, self).tearDown()
@@ -38,5 +38,5 @@ class TestAPD(TestCase):
                              expected_destination_connection_data)
 
     def test_run(self):
-        self.assertIn(arprdata.main(),
+        self.assertIn(main.main(),
                       "ArPrData Application successfully started")
