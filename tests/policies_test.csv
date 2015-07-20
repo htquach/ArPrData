@@ -1,0 +1,14 @@
+# Copyright (c) 2015 Hong Quach
+
+# This source file is licensed under the "MIT License."  Please see the LICENSE
+# in this distribution for license terms.
+# name, description, archive_statement, purge_statement, run_every_n_second,start_datetime
+Purge Table A, Purge data from table A, , purge_data('TableA'), 180, 2015-07-20 07:08:09
+Purge Table B, Purge data from table B, , purge_data('TableB'), 300, 2015-07-20 09:20:00
+Purge Table C, Purge data from table C, , purge_data('TableC'),  60, 2015-07-20 10:30:00
+Purge Table D, Purge data from table D, , purge_data('TableD'), 120, 2015-07-20 15:45:00
+Archive Table D, Archive data from table D, archive_data('TableD'), , 120, 2015-07-20 15:45:00
+Archive Table D, Archive data from table D, archive_data('TableD'), , 180, 2015-07-20 15:45:00
+Archive Table D, Archive data from table D, archive_data('TableD'), , 240, 2015-07-20 15:45:00
+Archive Table D, Archive data from table D, archive_data('TableD'), , 300, 2015-07-20 15:45:00
+Archive Table D, Archive data from table D, archive_data('TableD'), ,  60, 2015-07-20 15:45:00
