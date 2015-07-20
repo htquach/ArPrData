@@ -3,7 +3,6 @@
 # This source file is licensed under the "MIT License."  Please see the LICENSE
 # in this distribution for license terms.
 
-import sys
 import os
 from unittest import TestCase
 from subprocess import check_output, CalledProcessError
