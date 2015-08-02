@@ -4,13 +4,13 @@
 # in this distribution for license terms.
 """This module is the Archive and Purge engine"""
 import time
-from . import db
-from . import policyqueue
+import db
+import policyqueue
 
 
 class ArPr(object):
     """The main archive and purge engine"""
-    def __init__(self, policies_csv="policies.csv", db_url=""):
+    def __init__(self, policies_csv="", db_url=""):
         self.policies = policyqueue.PolicyQueue(policies_csv)
         if db_url:
             self.db_engine = db.get_engine(db_url)

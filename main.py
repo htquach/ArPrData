@@ -3,11 +3,11 @@
 # This source file is licensed under the "MIT License."  Please see the LICENSE
 # in this distribution for license terms.
 """The main driver for the ArPrData application."""
-from . import arpr
+import arpr
 
 def main():
     """Main driver"""
-    archive_and_purge_data = arpr.ArPr()
+    archive_and_purge_data = arpr.ArPr("../configs/policies.csv")
     archive_and_purge_data.run()
 
 

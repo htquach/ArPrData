@@ -3,8 +3,8 @@
 # This source file is licensed under the "MIT License."  Please see the LICENSE
 # in this distribution for license terms.
 """Policy Queue module.  A collection of policies sorted by the next run time"""
-from . import exc
-from . import policy
+import exc
+import policy
 
 
 class PolicyQueue(object):

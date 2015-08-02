@@ -7,8 +7,8 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import make_url
-from . import constant
-from . import exc
+import constant
+import exc
 
 __author__ = 'htquach'
 
