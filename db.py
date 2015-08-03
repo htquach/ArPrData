@@ -24,7 +24,7 @@ def get_db_url_from_env():
         return db_url
     else:
         raise exc.ArPrDataDBURLEnvironmentVariableEmptyException(
-            "The DB URL environment variable '%s' is empty or not defined."
+            "The DB URL environment variable '%s' is empty."
             % constant.DB_URL_ENV_NAME)
 
 
@@ -49,5 +49,6 @@ def get_engine(db_url):
     :param db_url: Database URL to connect to
     :return: Database engine
     """
-    return create_engine(check_db_url(db_url))
+    check_db_url(db_url)
+    return create_engine(db_url)
 

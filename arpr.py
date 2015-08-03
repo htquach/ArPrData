@@ -10,12 +10,12 @@ import policyqueue
 
 class ArPr(object):
     """The main archive and purge engine"""
-    def __init__(self, policies_csv="", db_url=""):
-        self.policies = policyqueue.PolicyQueue(policies_csv)
+    def __init__(self, policies_csv, db_url=""):
         if db_url:
             self.db_engine = db.get_engine(db_url)
         else:
             self.db_engine = db.get_engine(db.get_db_url_from_env())
+        self.policies = policyqueue.PolicyQueue(policies_csv)
 
     def _execute_stmt(self, statement):
         """Helper function to execute statement on the engine
@@ -46,6 +46,9 @@ class ArPr(object):
 
         :return: None
         """
+        if not self.policies:
+            print("No policy to run.")
+            return
         while True:
             current_policy = self.policies.dequeue()
             time.sleep(current_policy.seconds_to_next_run)
