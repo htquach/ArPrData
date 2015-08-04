@@ -12,7 +12,7 @@ class TestPyLint(TestCase):
     def _run_test(self, file_name, disable="", enable=""):
         try:
             root_dir = os.path.join(os.path.dirname(__file__), "..")
-            # check_output("pylint %s --disable=%s, --enable=%s" %
+            # check_output("pylint %s --disable=W0403, --enable=%s" %
             #              (file_name, disable, enable), cwd=root_dir)
             check_output(["pylint",
                           "--msg-template={path}:{line}: "
@@ -22,19 +22,19 @@ class TestPyLint(TestCase):
             self.fail(e.output)
 
     def test_main(self):
-        self._run_test("main.py")
+        self._run_test("main.py", disable="W0403")
 
     def test_policy(self):
         self._run_test("policy.py")
 
     def test_policyqueue(self):
-        self._run_test("policyqueue.py")
+        self._run_test("policyqueue.py", disable="W0403")
 
     def test_arpr(self):
-        self._run_test("arpr.py")
+        self._run_test("arpr.py", disable="(W0403)")
 
     def test_db(self):
-        self._run_test("db.py")
+        self._run_test("db.py", disable="W0403")
 
     def test_exc(self):
         self._run_test("exc.py")
