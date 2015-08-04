@@ -32,7 +32,8 @@ class ArPr(object):
         :param policy: The policy to have its archive statement executed.
         :return: None
         """
-        return self._execute_stmt(policy.ar_stmt)
+        if policy.ar_stmt:
+            return self._execute_stmt(policy.ar_stmt)
 
     def execute_purge_statement(self, policy):
         """Execute the purge statement of a given policy
@@ -40,7 +41,8 @@ class ArPr(object):
         :param policy: The plicy to have its purge statement executed.
         :return: None
         """
-        return self._execute_stmt(policy.pr_stmt)
+        if policy.pr_stmt:
+            return self._execute_stmt(policy.pr_stmt)
 
     def run(self):
         """Run the Archive and Purge scheduler
@@ -51,19 +53,26 @@ class ArPr(object):
             print("No policy to run.")
             return
         while True:
-            current_policy = self.policy_queue.get()
-            if current_policy.name == "Purge Table1":
-                prefix = "11111"
-            else:
-                prefix = "22222"
-            print("Next policy is '%s' in %d seconds" %
-                  (current_policy, current_policy.seconds_to_next_run))
-            time.sleep(current_policy.seconds_to_next_run)
-            print("%s Executing archive statement at %s" %
-                  (prefix, datetime.datetime.now()))
-            # self.execute_archive_statement(current_policy)
-            print("%s Executing   purge statement at %s" %
-                  (prefix, datetime.datetime.now()))
+            start_date, current_policy = self.policy_queue.get()
+            second_to_next = (start_date - datetime.datetime.now()).total_seconds()
+
+            if second_to_next < 0:
+                second_to_next = 0
+            print("Next run: '%s' in %d second%s" %
+                  (current_policy, second_to_next,
+                   "" if second_to_next < 2 else "s"))
+            time.sleep(second_to_next)
+            print("\tExecuting archive statement at %s" %
+                  (datetime.datetime.now()))
+            self.execute_archive_statement(current_policy)
+            print("\tExecuting   purge statement at %s" %
+                  (datetime.datetime.now()))
             # self.execute_purge_statement(current_policy))
             self.policy_queue.put(current_policy)
+
+            # Insert dummy data into the table
+            self.db_engine.execute('INSERT INTO "ArPrDataDemo"."Table1" '
+                                   'DEFAULT VALUES;')
+            self.db_engine.execute('INSERT INTO "ArPrDataDemo"."Table2" '
+                                   'DEFAULT VALUES;')
 

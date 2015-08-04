@@ -13,23 +13,26 @@ class PolicyQueue(Queue.PriorityQueue):
     """A policy list sorted by policy's next run time"""
     def _init(self, policies_yml, maxsize=0):
         Queue.PriorityQueue._init(self, maxsize)
+        print("Loading policies from '%s' file" % policies_yml)
         with open(policies_yml, "r") as yml_file:
             policies = yaml.load(yml_file)
             for p in policies:
-                print("Queuing up policy %s" % p)
                 self._put(policy.Policy(**p))
+                print("\tQueued up policy %s" % p)
+        queue_size = self._qsize()
+
+        print("Queued %s %s" % (queue_size,
+                                "policy" if queue_size < 2 else "policies"))
+        print("=" * 30)
 
     def show_policies(self):
         """Print the content of the policy queue"""
-        for policy_item in self.policy_list:
-            policy_item.show()
+        for next_run, policy_item in list(self.queue):
+            print(next_run, policy_item)
 
     def _put(self, new_policy, heappush=heapq.heappush):
         """Put the policy in the queue prioritized on its next start date"""
         Queue.PriorityQueue._put(self,
-                                 (new_policy.next_start_datetime, new_policy),
+                                 (new_policy.next_start_datetime,
+                                  new_policy),
                                  heappush)
-
-    def _get(self, heappop=heapq.heappop):
-        """get the policy in the queue prioritized on its next start date"""
-        return Queue.PriorityQueue._get(self, heappop)[1]

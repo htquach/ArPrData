@@ -54,8 +54,6 @@ class Policy(object):
         :return: the date time of next run
         """
         now = datetime.datetime.now()
-        # pylint: disable=W0511
-        #TODO:  Handle case "if now < self.next_run"
         seconds_to_next_run = (self.interval - (
             (now - self.start_datetime).total_seconds() % self.interval))
         return now + datetime.timedelta(seconds=seconds_to_next_run)

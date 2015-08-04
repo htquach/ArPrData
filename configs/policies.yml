@@ -5,14 +5,14 @@
 
 - "name": "Purge Table1"
   description: "Purge data from table 1"
-  archive_statement:
-  purge_statement: "DELETE FROM Table1 WHERE created_date < current_timestamp + interval('10 minutes');"
-  run_every_n_second: 5
-  start_datetime: 2015-07-20 07:08:09
+  archive_statement: INSERT INTO "ArPrDataDemo"."Table1Archive" (id, created_date, modified_date) SELECT id, created_date, modified_date FROM "ArPrDataDemo"."Table1" WHERE created_date < current_timestamp + interval '10 minutes';
+  purge_statement: DELETE FROM "ArPrDataDemo"."Table1" WHERE created_date < current_timestamp + interval '10 minutes';
+  run_every_n_second:  5
+  start_datetime: 2015-07-20 00:00:00
 
 - "name": "Purge Table2"
   description: "Purge data from table 2"
   archive_statement:
   purge_statement:
   run_every_n_second: 10
-  start_datetime: 2015-07-20 07:08:09
+  start_datetime: 2015-07-20 00:00:00
