@@ -21,7 +21,8 @@ class Policy(object):
         :param start_datetime: The start date time to being counting the
         interval.  Date value is expected to be either a datetime data type or
         a string 'YYYY-MM-DD HH:mm:ss'
-        :return:
+
+        :return: None
         """
         # too-many-arguments
         # pylint: disable=R0913
@@ -37,10 +38,21 @@ class Policy(object):
                 start_datetime, "YYYY-MM-DD HH:mm:ss")
 
     @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if not value:
+            raise RuntimeError("Policy's name cannot be blank")
+        self._name = value
+
+    @property
     def next_start_datetime(self):
         """Get the next start datetime
 
-        :return: the date time of next run"""
+        :return: the date time of next run
+        """
         now = datetime.datetime.now()
         # pylint: disable=W0511
         #TODO:  Handle case "if now < self.next_run"
@@ -51,12 +63,13 @@ class Policy(object):
     @property
     def seconds_to_next_run(self):
         """The section from now until next run
+
         :return: The total seconds from now to next run
         """
         return (self.next_start_datetime
                 - datetime.datetime.now()).total_seconds()
 
-    def __repr__(self):
+    def __str__(self):
         """Print the Policy
 
         :return: A string with basic information of this policy
