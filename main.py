@@ -7,7 +7,7 @@ import arpr
 
 def main():
     """Main driver"""
-    archive_and_purge_data = arpr.ArPr("configs/policies.yml")
+    archive_and_purge_data = arpr.ArPr("samples/policies.yml")
     archive_and_purge_data.run()
 
 
