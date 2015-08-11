@@ -67,7 +67,7 @@ class ArPr(object):
             self.execute_archive_statement(current_policy)
             print("\tExecuting   purge statement at %s" %
                   (datetime.datetime.now()))
-            # self.execute_purge_statement(current_policy))
+            self.execute_purge_statement(current_policy)
             self.policy_queue.put(current_policy)
 
             # Insert dummy data into the table
