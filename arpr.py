@@ -70,9 +70,3 @@ class ArPr(object):
             self.execute_purge_statement(current_policy)
             self.policy_queue.put(current_policy)
 
-            # Insert dummy data into the table
-            self.db_engine.execute('INSERT INTO "ArPrDataDemo"."Table1" '
-                                   'DEFAULT VALUES;')
-            self.db_engine.execute('INSERT INTO "ArPrDataDemo"."Table2" '
-                                   'DEFAULT VALUES;')
-
