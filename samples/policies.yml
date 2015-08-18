@@ -4,22 +4,29 @@
 # in this distribution for license terms.
 
 - "name": "Archive & Purge Table1"
-  description: "Archive and purge data from table 1"
+  description: "Archive and purge data older than 10 minutes from table 1"
   archive_statement: INSERT INTO "ArPrDataDemo"."Table1Archive" (id, created_date, modified_date) SELECT id, created_date, modified_date FROM "ArPrDataDemo"."Table1" WHERE created_date < current_timestamp - interval '10 minutes';
   purge_statement: DELETE FROM "ArPrDataDemo"."Table1" WHERE created_date < current_timestamp - interval '10 minutes';
   run_every_n_second:  41
   start_datetime: 2015-07-20 00:00:00
 
 - "name": "Purge Table1Archive"
-  description: "Purge data from table 1 archive"
+  description: "Purge data older than 10 hours from table 1 archive"
   archive_statement:
   purge_statement: DELETE FROM "ArPrDataDemo"."Table1Archive" WHERE created_date < current_timestamp - interval '10 hours';
   run_every_n_second:  576
   start_datetime: 2015-07-20 00:00:00
 
 - "name": "Purge Table2"
-  description: "Purge data from table 2"
+  description: "Purge data older than 4 hours from table 2"
   archive_statement:
   purge_statement: DELETE FROM "ArPrDataDemo"."Table2" WHERE created_date < current_timestamp - interval '4 hours';
   run_every_n_second: 37
+  start_datetime: 2015-07-20 00:00:00
+
+- "name": "Insert dummy data"
+  description: "Insert dummy data with default value for demo purpose"
+  archive_statement: INSERT INTO "ArPrDataDemo"."Table1" DEFAULT VALUES;
+  purge_statement: INSERT INTO "ArPrDataDemo"."Table2" DEFAULT VALUES;
+  run_every_n_second: 72
   start_datetime: 2015-07-20 00:00:00
