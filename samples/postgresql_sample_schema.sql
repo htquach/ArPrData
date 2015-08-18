@@ -10,16 +10,13 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: ArPrDataDemo; Type: SCHEMA; Schema: -; Owner: htquach
+-- Name: ArPrDataDemo; Type: SCHEMA; Schema: -
 --
 
 CREATE SCHEMA "ArPrDataDemo";
 
-
-ALTER SCHEMA "ArPrDataDemo" OWNER TO htquach;
-
 --
--- Name: SCHEMA "ArPrDataDemo"; Type: COMMENT; Schema: -; Owner: htquach
+-- Name: SCHEMA "ArPrDataDemo"; Type: COMMENT; Schema: -;
 --
 
 COMMENT ON SCHEMA "ArPrDataDemo" IS 'A demo database to use with ArPrData application published on GitHub.  ArPrData is a project from CS561 Summer 2015.';
@@ -32,7 +29,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: Table1; Type: TABLE; Schema: ArPrDataDemo; Owner: htquach; Tablespace:
+-- Name: Table1; Type: TABLE; Schema: ArPrDataDemo; Tablespace:
 --
 
 CREATE TABLE "Table1" (
@@ -42,17 +39,15 @@ CREATE TABLE "Table1" (
 );
 
 
-ALTER TABLE "ArPrDataDemo"."Table1" OWNER TO htquach;
-
 --
--- Name: TABLE "Table1"; Type: COMMENT; Schema: ArPrDataDemo; Owner: htquach
+-- Name: TABLE "Table1"; Type: COMMENT; Schema: ArPrDataDemo
 --
 
 COMMENT ON TABLE "Table1" IS 'Table1 with dummy data';
 
 
 --
--- Name: Table1Archive; Type: TABLE; Schema: ArPrDataDemo; Owner: htquach; Tablespace:
+-- Name: Table1Archive; Type: TABLE; Schema: ArPrDataDemo; Tablespace:
 --
 
 CREATE TABLE "Table1Archive" (
@@ -62,10 +57,8 @@ CREATE TABLE "Table1Archive" (
 );
 
 
-ALTER TABLE "ArPrDataDemo"."Table1Archive" OWNER TO htquach;
-
 --
--- Name: Table1_id_seq; Type: SEQUENCE; Schema: ArPrDataDemo; Owner: htquach
+-- Name: Table1_id_seq; Type: SEQUENCE; Schema: ArPrDataDemo
 --
 
 CREATE SEQUENCE "Table1_id_seq"
@@ -76,17 +69,15 @@ CREATE SEQUENCE "Table1_id_seq"
     CACHE 1;
 
 
-ALTER TABLE "ArPrDataDemo"."Table1_id_seq" OWNER TO htquach;
-
 --
--- Name: Table1_id_seq; Type: SEQUENCE OWNED BY; Schema: ArPrDataDemo; Owner: htquach
+-- Name: Table1_id_seq; Type: SEQUENCE OWNED BY; Schema: ArPrDataDemo
 --
 
 ALTER SEQUENCE "Table1_id_seq" OWNED BY "Table1".id;
 
 
 --
--- Name: Table2; Type: TABLE; Schema: ArPrDataDemo; Owner: htquach; Tablespace:
+-- Name: Table2; Type: TABLE; Schema: ArPrDataDemo; Tablespace:
 --
 
 CREATE TABLE "Table2" (
@@ -98,10 +89,8 @@ CREATE TABLE "Table2" (
 );
 
 
-ALTER TABLE "ArPrDataDemo"."Table2" OWNER TO htquach;
-
 --
--- Name: Table2Archive; Type: TABLE; Schema: ArPrDataDemo; Owner: htquach; Tablespace:
+-- Name: Table2Archive; Type: TABLE; Schema: ArPrDataDemo; Tablespace:
 --
 
 CREATE TABLE "Table2Archive" (
@@ -113,10 +102,8 @@ CREATE TABLE "Table2Archive" (
 );
 
 
-ALTER TABLE "ArPrDataDemo"."Table2Archive" OWNER TO htquach;
-
 --
--- Name: Table2_id_seq; Type: SEQUENCE; Schema: ArPrDataDemo; Owner: htquach
+-- Name: Table2_id_seq; Type: SEQUENCE; Schema: ArPrDataDemo
 --
 
 CREATE SEQUENCE "Table2_id_seq"
@@ -127,31 +114,29 @@ CREATE SEQUENCE "Table2_id_seq"
     CACHE 1;
 
 
-ALTER TABLE "ArPrDataDemo"."Table2_id_seq" OWNER TO htquach;
-
 --
--- Name: Table2_id_seq; Type: SEQUENCE OWNED BY; Schema: ArPrDataDemo; Owner: htquach
+-- Name: Table2_id_seq; Type: SEQUENCE OWNED BY; Schema: ArPrDataDemo
 --
 
 ALTER SEQUENCE "Table2_id_seq" OWNED BY "Table2".id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: ArPrDataDemo; Owner: htquach
+-- Name: id; Type: DEFAULT; Schema: ArPrDataDemo
 --
 
 ALTER TABLE ONLY "Table1" ALTER COLUMN id SET DEFAULT nextval('"Table1_id_seq"'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: ArPrDataDemo; Owner: htquach
+-- Name: id; Type: DEFAULT; Schema: ArPrDataDemo
 --
 
 ALTER TABLE ONLY "Table2" ALTER COLUMN id SET DEFAULT nextval('"Table2_id_seq"'::regclass);
 
 
 --
--- Name: Table1_pkey; Type: CONSTRAINT; Schema: ArPrDataDemo; Owner: htquach; Tablespace:
+-- Name: Table1_pkey; Type: CONSTRAINT; Schema: ArPrDataDemo; Tablespace:
 --
 
 ALTER TABLE ONLY "Table1"
@@ -159,7 +144,7 @@ ALTER TABLE ONLY "Table1"
 
 
 --
--- Name: Table2_pkey; Type: CONSTRAINT; Schema: ArPrDataDemo; Owner: htquach; Tablespace:
+-- Name: Table2_pkey; Type: CONSTRAINT; Schema: ArPrDataDemo; Tablespace:
 --
 
 ALTER TABLE ONLY "Table2"
